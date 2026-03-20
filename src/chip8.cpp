@@ -104,10 +104,24 @@ void Chip8::processOpcode()
     else if (opcode == 0x00EE)
     {
         std::println("Returning from subroutine!");
+        OP_00EE();
     }
 
     switch (opcode & 0xF000)
     {
+        case (0x0000):
+        {
+            if (opcode == 0x00E0)
+            {
+                OP_00E0();
+            }
+
+            else if (opcode == 0x00EE)
+            {
+                OP_00EE();
+            }
+            break;
+        }
         case (0x1000):
         {
             OP_1NNN();
@@ -264,8 +278,6 @@ void Chip8::OP_00E0()
 // Return from subroutine
 void Chip8::OP_00EE()
 {
-    assert(sp > 0);
-
     pc = stack[sp];
     sp--;
 }
