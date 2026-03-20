@@ -424,7 +424,7 @@ void Chip8::OP_8XY6()
     uint8_t vy = (opcode & 0x00F0) >> 4;
 
     registers[0xF] = registers[vx] & 0x1;
-    registers[vx] = registers[vx] >> registers[vy];
+    registers[vx] = registers[vy] >> 1;
 }
 
 void Chip8::OP_8XY7()
